@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+    stages {
+        stage ("clone") {
+            steps {
+                echo "cloning file from github"
+                checkout scm 
+            }
+        }
+        stage ("deploy") {
+            steps {
+                echo "deploying the code"
+                sh "cp /var/lib/jenkins/workspace/${JOB_NAME}/index.html /var/www/html/"
+            }
+        }
+    }
+}
